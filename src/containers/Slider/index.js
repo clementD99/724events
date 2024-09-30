@@ -11,10 +11,12 @@ const Slider = () => {
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
   const nextCard = () => {
-    setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
-      5000
-    );
+    if (byDateDesc && byDateDesc.length > 0) {
+      setTimeout(
+        () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
+        5000
+      );
+    }
   };
   useEffect(() => {
     nextCard();
@@ -23,6 +25,7 @@ const Slider = () => {
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
         <>
+         {/* <div key={event}> toujours props key qund .map */}
           <div
             key={event.title}
             className={`SlideCard SlideCard--${
@@ -45,11 +48,12 @@ const Slider = () => {
                   key={`${event.id}`}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+                  checked={index === radioIdx} // idx remplacé par index. Le point bleu marche correctement.
                 />
               ))}
             </div>
           </div>
+         {/* </div> */}
         </>
       ))}
     </div>

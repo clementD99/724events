@@ -1,5 +1,7 @@
 # 724 Events
 
+Dixième projet Openclassroom
+
 ## Description
 L'application est le site d'une agence evenementielle.
 ## Pre-requis
