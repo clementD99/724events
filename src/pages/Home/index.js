@@ -23,7 +23,9 @@ const Page = () => {
         <section className="SliderContainer">
           <Slider />
         </section>
-        <section className="ServicesContainer" id="nos-services"> {/* Ajout de l'id */}
+        <section className="ServicesContainer" id="nos-services">
+          {" "}
+          {/* Ajout de l'id */}
           <h2 className="Title">Nos services</h2>
           <p>Nous organisons des événements sur mesure partout dans le monde</p>
           <div className="ListContainer">
@@ -52,7 +54,9 @@ const Page = () => {
             </ServiceCard>
           </div>
         </section>
-        <section className="EventsContainer" id="nos-realisations"> {/* Ajout de l'id */}
+        <section className="EventsContainer" id="nos-realisations">
+          {" "}
+          {/* Ajout de l'id */}
           <h2 className="Title">Nos réalisations</h2>
           <EventList />
         </section>
@@ -92,7 +96,9 @@ const Page = () => {
             />
           </div>
         </section>
-        <div className="FormContainer" id="contact"> {/* Ajout de l'id */}
+        <div className="FormContainer" id="contact">
+          {" "}
+          {/* Ajout de l'id */}
           <h2 className="Title">Contact</h2>
           <Modal
             Content={
@@ -114,7 +120,7 @@ const Page = () => {
       <footer className="row">
         <div className="col presta">
           <h3>Notre dernière prestation</h3>
-          {last && (
+          {last ? (
             <EventCard
               imageSrc={last.cover}
               title={last.title}
@@ -122,8 +128,11 @@ const Page = () => {
               small
               label="boom"
             />
+          ) : (
+            <p>Aucun événement disponible pour le moment.</p>
           )}
         </div>
+
         <div className="col contact">
           <h3>Contactez-nous</h3>
           <address>45 avenue de la République, 75000 Paris</address>
