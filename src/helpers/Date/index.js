@@ -13,4 +13,6 @@ export const MONTHS = {
   12: "décembre",
 };
 
-export const getMonth = (date) => MONTHS[date.getMonth()];
+export const getMonth = (date) => MONTHS[date.getMonth() +1];
+// EXPLICATION : le "+ 1" permet de retourner les mois pour les afficher sur le slider.
+// Les mois commencent par 1 alors qu'en JS, c'est par 0. Il n'y avait pas le mois janvier car il commence par 1 et non 0.
