@@ -24,8 +24,9 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
-         {/* <div key={event}> toujours props key qund .map */}
+        <div key={event}>
+          {" "}
+          {/* toujours props .key quand map */}
           <div
             key={event.title}
             className={`SlideCard SlideCard--${
@@ -53,8 +54,7 @@ const Slider = () => {
               ))}
             </div>
           </div>
-         {/* </div> */}
-        </>
+        </div>
       ))}
     </div>
   );
