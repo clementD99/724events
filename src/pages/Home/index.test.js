@@ -36,9 +36,9 @@ describe("When a page is created", () => {
     // to implement
   })
   it("a footer is displayed", () => {
-    // to implement
+    render (<Home/>)
   })
   it("an event card, with the last event, is displayed", () => {
-    // to implement
+    render (<Home/>)
   })
 });
