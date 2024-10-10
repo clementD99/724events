@@ -20,13 +20,12 @@ const Slider = () => {
   };
   useEffect(() => {
     nextCard();
-  });
+  }, [index, byDateDesc]); // Pour éviter une boucle 
+
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <div key={event}>
-          {" "}
-          {/* toujours props .key quand map */}
+        <div key={event.id || idx}>
           <div
             key={event.title}
             className={`SlideCard SlideCard--${
@@ -46,10 +45,11 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  key={`radio-${event.id || radioIdx}`} // Utilisez event.id ou radioIdx en dernier recours
                   type="radio"
                   name="radio-button"
                   checked={index === radioIdx} // idx remplacé par index. Le point bleu marche correctement.
+                  onChange={() => setIndex(radioIdx)} 
                 />
               ))}
             </div>
