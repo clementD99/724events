@@ -13,9 +13,13 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const { last } = useData();
+  const { data } = useData(); // Pour récupérer les données
+  const last = data?.events?.sort(
+    // Pour trier toutes les données et retrouver le + récent
+    (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
+  )[0];
   return (
-    <>
+    <div>
       <header>
         <Menu />
       </header>
@@ -29,14 +33,17 @@ const Page = () => {
           <h2 className="Title">Nos services</h2>
           <p>Nous organisons des événements sur mesure partout dans le monde</p>
           <div className="ListContainer">
-            <ServiceCard imageSrc="/images/priscilla-du-preez-Q7wGvnbuwj0-unsplash1.png">
+            <ServiceCard
+              key="service-1"
+              imageSrc="/images/priscilla-du-preez-Q7wGvnbuwj0-unsplash1.png"
+            >
               <h3>Soirée d’entreprise</h3>
               Une soirée d’entreprise vous permet de réunir vos équipes pour un
               moment convivial afin de valoriser votre société en projetant une
               image dynamique. Nous vous proposons d’organiser pour vous vos
               diners et soirée d’entreprise
             </ServiceCard>
-            <ServiceCard imageSrc="/images/hall-expo.png">
+            <ServiceCard key="service-2" imageSrc="/images/hall-expo.png">
               <h3>Conférences</h3>
               724 events vous propose d’organiser votre évènement, quelle que
               soit sa taille, en s’adaptant à votre demande et à vos demandes.
@@ -44,7 +51,10 @@ const Page = () => {
               le lieu parfait ainsi que des solutions inédites pour capter votre
               audience et faire de cet évènement un succès
             </ServiceCard>
-            <ServiceCard imageSrc="/images/sophia-sideri-LFXMtUuAKK8-unsplash1.png">
+            <ServiceCard
+              key="service-3"
+              imageSrc="/images/sophia-sideri-LFXMtUuAKK8-unsplash1.png"
+            >
               <h3>Experience digitale</h3>
               Notre agence experte en contenus immersifs offre des services de
               conseil aux entreprises, pour l’utilisation de la réalité
@@ -62,7 +72,7 @@ const Page = () => {
         </section>
         <section className="PeoplesContainer" id="notre-equipe">
           <h2 className="Title">Notre équipe</h2>
-          <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
+          <p>Une équipe d’experts dédiés à l’organisation de vos événements</p>
           <div className="ListContainer">
             <PeopleCard
               imageSrc="/images/stephanie-liverani-Zz5LQe-VSMY-unsplash.png"
@@ -105,7 +115,7 @@ const Page = () => {
               <div className="ModalMessage--success">
                 <div>Message envoyé !</div>
                 <p>
-                  Merci pour votre message nous tâcherons de vous répondre dans
+                  Merci pour votre message, nous tâcherons de vous répondre dans
                   les plus brefs délais
                 </p>
               </div>
@@ -117,16 +127,16 @@ const Page = () => {
           </Modal>
         </div>
       </main>
-      <footer className="row">
+      <footer className="row" id="footer">
         <div className="col presta">
           <h3>Notre dernière prestation</h3>
-          {last ? (
+          {last && last.cover && last.title ? ( // Pour éviter l'erreur "undefined"
             <EventCard
               imageSrc={last.cover}
               title={last.title}
               date={new Date(last.date)}
               small
-              label="boom"
+              label={last.type || ""} // Ajout d'une valeur par défaut
             />
           ) : (
             <p>Aucun événement disponible pour le moment.</p>
@@ -159,11 +169,11 @@ const Page = () => {
             Une agence événementielle propose des prestations de service
             spécialisées dans la conception et l&apos;organisation de divers
             événements tels que des événements festifs, des manifestations
-            sportives et culturelles, des événements professionnels
+            sportives et culturelles, des événements professionnels.
           </p>
         </div>
       </footer>
-    </>
+    </div>
   );
 };
 
