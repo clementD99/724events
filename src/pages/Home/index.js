@@ -27,7 +27,7 @@ const Page = () => {
         <section className="SliderContainer">
           <Slider />
         </section>
-        <section className="ServicesContainer" id="nos-services">
+        <section className="ServicesContainer" data-testid="nos-services">
           {" "}
           {/* Ajout de l'id */}
           <h2 className="Title">Nos services</h2>
@@ -64,13 +64,13 @@ const Page = () => {
             </ServiceCard>
           </div>
         </section>
-        <section className="EventsContainer" id="nos-realisations">
+        <section className="EventsContainer" data-testid="nos-realisations">
           {" "}
           {/* Ajout de l'id */}
           <h2 className="Title">Nos réalisations</h2>
           <EventList />
         </section>
-        <section className="PeoplesContainer" id="notre-equipe">
+        <section className="PeoplesContainer" data-testid="notre-equipe">
           <h2 className="Title">Notre équipe</h2>
           <p>Une équipe d’experts dédiés à l’organisation de vos événements</p>
           <div className="ListContainer">
@@ -127,7 +127,7 @@ const Page = () => {
           </Modal>
         </div>
       </main>
-      <footer className="row" id="footer">
+      <footer className="row" data-testid="footer"> {/* Ajout d'un data-testid au lieu de id */}
         <div className="col presta">
           <h3>Notre dernière prestation</h3>
           {last && last.cover && last.title ? ( // Pour éviter l'erreur "undefined"
