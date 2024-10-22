@@ -45,7 +45,7 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`radio-${event.id || radioIdx}`} // Utilisez event.id ou radioIdx en dernier recours
+                  key={`radio-${event.id || radioIdx}`} // utilisation de event.id ou radioIdx
                   type="radio"
                   name="radio-button"
                   checked={index === radioIdx} // idx remplacé par index. Le point bleu marche correctement.
