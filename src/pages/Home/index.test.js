@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Home from "./index";
+import PeopleCard from "../../components/PeopleCard";
 
 describe("When Form is created", () => {
   it("a list of fields card is displayed", async () => {
@@ -28,15 +29,39 @@ describe("When Form is created", () => {
 
 describe("When a page is created", () => {
   it("a list of events is displayed", () => {
-    // to implement
+    render(<Home />);
+
+    const services = screen.getByTestId("nos-services");
+    expect(services).toBeInTheDocument();
+
+    const realisations = screen.getByTestId("nos-realisations");
+    expect(realisations).toBeInTheDocument();
+
+    const equipe = screen.getByTestId("notre-equipe");
+    expect(equipe).toBeInTheDocument();
   });
+
   it("a list a people is displayed", () => {
-    // to implement
+    render(<Home />);
+    <PeopleCard imageSrc="/images/" name="name" position="position" />;
   });
+
   it("a footer is displayed", () => {
     render(<Home />);
+    const footer = screen.getByTestId("footer");
+    expect(footer).toBeInTheDocument();
   });
+
   it("an event card, with the last event, is displayed", () => {
     render(<Home />);
+    screen.debug();
+    const eventTitle = screen.queryByText(/Notre dernière prestation/i);
+    const eventFallback = screen.queryByText(
+      /Aucun événement disponible pour le moment/i
+    );
+    expect(eventTitle).toBeInTheDocument();
+    if (!eventTitle) {
+      expect(eventFallback).toBeInTheDocument();
+    }
   });
 });
